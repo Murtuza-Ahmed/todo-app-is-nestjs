@@ -1,0 +1,27 @@
+POST http://localhost:8000/users/create
+Content-Type: application/json
+
+{
+  "name": "john_doe",
+  "email": "john02@gmail.com",
+  "password": "securePassword123"
+}
+
+###
+GET http://localhost:8000/users
+
+###
+GET http://localhost:8000/users/68f0efe54a2a93bc0d0af5cb
+
+###
+PATCH http://localhost:8000/users/68f0efe54a2a93bc0d0af5cb
+Content-Type: application/json
+
+{
+  "name": "john_doe_updated",
+  "email": "doe@gmail.com",
+  "password": "123456"
+}
+
+###
+DELETE http://localhost:8000/users/68f0efe54a2a93bc0d0af5cb

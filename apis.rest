@@ -17,7 +17,7 @@ GET http://localhost:8000/users/68f0efe54a2a93bc0d0af5cb
 PATCH http://localhost:8000/users/68f0efe54a2a93bc0d0af5cb
 Content-Type: application/json
 
-{
+{ 
   "name": "john_doe_updated",
   "email": "doe@gmail.com",
   "password": "123456"

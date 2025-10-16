@@ -15,7 +15,7 @@ interface MongoDuplicateError extends MongoServerError {
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
   async create(createUserDto: CreateUserDto) {
     try {
       const salt = await bcrypt.genSalt(10);

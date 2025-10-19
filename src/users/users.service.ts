@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateUserDto } from './dto/create-user.dto';
+// import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 import { Model } from 'mongoose';
@@ -15,13 +15,14 @@ interface MongoDuplicateError extends MongoServerError {
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
-  async create(createUserDto: CreateUserDto) {
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  async create(name: string, email: string, password: string) {
     try {
       const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
+      const hashedPassword = await bcrypt.hash(password, salt);
       const createdUser = new this.userModel({
-        ...createUserDto,
+        name,
+        email,
         password: hashedPassword,
       });
       return await createdUser.save();
